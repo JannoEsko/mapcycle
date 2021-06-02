@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{TITLE}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        {CSS}
+    </head>
+    <body>
+        <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <h4>{TOOL_NAME}</h4>
+            </div>
+            
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+                <li>
+                    <a href="#maps_submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Maps</a>
+                    <ul class="collapse list-unstyled " id="maps_submenu">
+                        <li>
+                            <a href="/maps/entities">Entities</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/maps/mapcycle">Mapcycle</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/statistics">Statistics</a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled ">
+                <li>
+                    <a target="_blank" href="https://forums.3d-sof2.com">3D# Forums</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://maps.3d-sof2.com/entgen">Kawa's entity generator</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div  id="content" class="container-fluid">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light bg-abc-dark">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn active">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    {NAVBAR_EXTRA}
+                    <a class="text-white headlink" href="#" {LOGIN_TXT_ACTION}>{LOGIN_TXT}</a>
+                </div>
+            </nav>
+            
+            {BODY}
+        </div>
+        
+    </div><form id="logout" method="post" style="display: none;">
+            <input name="logout" value="1">
+            
+        </form>
+      <div id="loginModal" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 id="loginModalTitle" class="modal-title">Log in</h4>
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                    </div>
+                    <div class="modal-body" id="loginModalBody">
+                        <form id="loginForm" role="form" method="post">
+                            <input id='login' type="hidden" name="login" value="1">
+                            <h4>Please use your forum credentials to log in</h4>
+        If you are not registered, please head to <a href="https://forums.3d-sof2.com/register/">3D# Forums</a> to register.<br><br>
+                            <div class="form-group">
+                                <label for="username">Username / Email</label>
+                                <input id="username" type="text" name="username" class="form-control" required placeholder="Your forum username / email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" name="password" class="form-control" required placeholder="Your forum password">
+                            </div>
+                            <div class="form-group">
+                                <button id="formSubmit" style='display: none;' type="submit" class="btn btn-default btn-block">Submit</button>
+                            </div>
+                        </form>
+                        
+                        
+                        </div>
+                    <div class="modal-footer">
+                        
+                            
+        <button type="button" class="btn btn-success mr-auto" onclick="$('#formSubmit').click();">Log in</button>
+        
+                            
+                                <button type="button" class="btn btn-default " data-dismiss="modal" >Close</button>
+                            
+                    </div>
+                </div> </div>
+            </div>  
+{POSTDIV}
+        {SCRIPT}
+    </body>
+</html>
