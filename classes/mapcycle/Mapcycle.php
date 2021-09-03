@@ -1905,10 +1905,28 @@ class PushToLive {
 	/*
 	This is a horrible function. PHP doesn't reuse the connection, therefore it spawns a new one each call.
 	It's better to rewrite it to a standard, single ftp connection and push files through a single connection.
+	now rewritten to reuse the FTP handle.
 	*/
-    private static function writeFile($filePath, $fileName, $fileContents, $username, $password, $ip = "127.0.0.1", $port = 21) {
+    private static $FTP_HANDLERS = array();
+    private static function writeFile($filePath, $fileName, $fileContents, $username, $password, $ip = "127.0.0.1", $port = 2123) {
+        $ftpHandle = null;
+        if (array_key_exists("$ip:$port:$username", self::$FTP_HANDLERS)) {
+            $ftpHandle = self::$FTP_HANDLERS["$ip:$port:$username"];
+            if (!ftp_pasv($ftpHandle, true)) {
+                $ftpHandle = null;
+                unset(self::$FTP_HANDLERS["$ip:$port:$username"]);
+            } else {
+            }
+        }
         
-        return file_put_contents("ftp://$username:$password@$ip:$port/$filePath/$fileName", $fileContents, 0, stream_context_create(array("ftp" => array("overwrite" => true))));
+        if ($ftpHandle === null) {
+            $ftpHandle = ftp_connect($ip, $port);
+            ftp_login($ftpHandle, $username, $password);
+            ftp_pasv($ftpHandle, true);
+            self::$FTP_HANDLERS["$ip:$port:$username"] = $ftpHandle;
+        }
+        $stream = fopen('data://text/plain,' . $fileContents, 'r');
+        return ftp_fput($ftpHandle, "$filePath/$fileName", $stream);
     }
 
     
