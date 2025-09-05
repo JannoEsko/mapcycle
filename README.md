@@ -1,6 +1,10 @@
 # mapcycle
 Mapcycle management page for SoF2
 
+NB - the source code is provided as-is. No additional maintenance nor updates should be expected. I might share some adjustments which have been done for the version which is actively in use still today, but that's for another day.
+
+PR's are welcome to the repo, but mind you this application for sure contains outdated modules.
+
 Web based solution for handling/managing mapcycles. 
 
 Whole application idea started long ago, when I built entity related functionality (uploads mostly).
