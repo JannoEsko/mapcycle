@@ -1,5 +1,7 @@
 # mapcycle
-Mapcycle management page for SoF2
+Mapcycle management page for SoF2.
+
+This is compatible with the default mapcycle file which the engine can parse. Mapcycle files which are introduced by other mods, are not compatible.
 
 NB - the source code is provided as-is. No additional maintenance nor updates should be expected. I might share some adjustments which have been done for the version which is actively in use still today, but that's for another day.
 
